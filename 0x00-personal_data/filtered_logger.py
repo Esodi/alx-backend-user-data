@@ -7,8 +7,9 @@ import re
 
 def filter_datum(fields, redaction, message, separator):
     ''' function itself '''
+     escaped_separator = re.escape(separator)
     for j in fields:
-        pat = r'{}=[^{}]+'.format(j, separator)
+        pat = r'{}=[^{}]+'.format(j, escaped_separator)
         r = f'{j}='+redaction
         message = re.sub(pat, r, message)
     return message
